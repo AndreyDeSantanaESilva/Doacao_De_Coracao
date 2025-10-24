@@ -65,7 +65,9 @@
     .viewer {
       position: relative;
       width: 100%;
-      height: 400px;
+      max-width: 600px;  /* limite de largura */
+      height: 350px;     /* altura fixa */
+      margin: 0 auto;    /* centraliza */
       border-radius: 12px;
       overflow: hidden;
       background: radial-gradient(100% 120% at 50% 50%, #222735, #0b0f19);
@@ -99,7 +101,7 @@
     }
 
     @media (max-width: 600px) {
-      .viewer { height: 300px; }
+      .viewer { height: 280px; max-width: 100%; }
       header h1 { font-size: 1.6rem; }
     }
   </style>
@@ -174,8 +176,8 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#10141f');
 
-    const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-    camera.position.set(0, 0.5, 2.5); // ajusta a distância
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+    camera.position.set(0, 0.5, 3); // afastado e centralizado
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -183,26 +185,26 @@
     controls.autoRotateSpeed = 1.0;
 
     // Iluminação aprimorada
-    const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.8);
-    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.8);
-    luzDirecional.position.set(2, 3, 4);
-    const luzSuave = new THREE.HemisphereLight(0xffeeee, 0x222233, 0.8);
-    scene.add(luzAmbiente, luzDirecional, luzSuave);
+    const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.5);
+    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.2);
+    luzDirecional.position.set(3, 3, 5);
+    scene.add(luzAmbiente, luzDirecional);
 
     // Carregamento do coração
     const loader = new GLTFLoader();
     loader.load('heart.glb', (gltf) => {
       const modelo = gltf.scene;
-      modelo.scale.set(0.8, 0.8, 0.8); // tamanho ajustado
-      modelo.position.set(0, -0.2, 0); // centralizado
+      modelo.scale.set(0.5, 0.5, 0.5); // menor e proporcional
+      modelo.position.set(0, -0.2, 0);
       scene.add(modelo);
     }, undefined, (erro) => {
       console.error('Erro ao carregar o modelo 3D:', erro);
     });
 
     function ajustarTamanho() {
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
+      const viewer = document.querySelector('.viewer');
+      const width = viewer.clientWidth;
+      const height = viewer.clientHeight;
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
