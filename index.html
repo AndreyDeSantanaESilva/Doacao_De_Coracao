@@ -62,11 +62,12 @@
 
     ul { margin: 10px 0 10px 20px; }
 
+    /* viewer limitado e centralizado */
     .viewer {
       position: relative;
       width: 100%;
-      max-width: 600px;  /* limite de largura */
-      height: 350px;     /* altura fixa */
+      max-width: 550px;  /* limite fixo */
+      height: 340px;     /* altura fixa */
       margin: 0 auto;    /* centraliza */
       border-radius: 12px;
       overflow: hidden;
@@ -101,7 +102,7 @@
     }
 
     @media (max-width: 600px) {
-      .viewer { height: 280px; max-width: 100%; }
+      .viewer { height: 270px; max-width: 100%; }
       header h1 { font-size: 1.6rem; }
     }
   </style>
@@ -127,25 +128,6 @@
     <section>
       <h2>Introdução</h2>
       <p>A doação de órgãos é um ato de amor e solidariedade. Este projeto analisa o impacto das tecnologias avançadas no transplante de coração, explorando inovações que têm revolucionado a medicina moderna.</p>
-    </section>
-
-    <section>
-      <h2>Avanços Tecnológicos</h2>
-      <ul>
-        <li><strong>Perfusão normotérmica:</strong> mantém o coração funcionando fora do corpo, ampliando o tempo de preservação e permitindo monitoramento.</li>
-        <li><strong>IA e compatibilidade:</strong> cruza tipo sanguíneo, HLA e dados clínicos para agilizar o pareamento doador–receptor.</li>
-        <li><strong>Softwares hospitalares:</strong> otimizam logística, rastreabilidade e comunicação entre equipes médicas.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Custos e Formação Profissional</h2>
-      <p>Investimentos em equipamentos e capacitação são essenciais. A formação técnica e a iniciação científica garantem uso ético e eficiente das ferramentas.</p>
-    </section>
-
-    <section>
-      <h2>Conclusão</h2>
-      <p>Tecnologia e humanidade se complementam. Ao ampliar segurança e alcance dos transplantes, a inovação potencializa o gesto humano da doação.</p>
     </section>
 
     <footer>
@@ -177,25 +159,29 @@
     scene.background = new THREE.Color('#10141f');
 
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-    camera.position.set(0, 0.5, 3); // afastado e centralizado
+    camera.position.set(0, 0.4, 2.5);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.0;
 
-    // Iluminação aprimorada
-    const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.5);
-    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.2);
-    luzDirecional.position.set(3, 3, 5);
+    const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.8);
+    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.5);
+    luzDirecional.position.set(2, 3, 4);
     scene.add(luzAmbiente, luzDirecional);
 
-    // Carregamento do coração
     const loader = new GLTFLoader();
     loader.load('heart.glb', (gltf) => {
       const modelo = gltf.scene;
-      modelo.scale.set(0.5, 0.5, 0.5); // menor e proporcional
-      modelo.position.set(0, -0.2, 0);
+
+      // Centraliza o modelo pelo seu bounding box
+      const box = new THREE.Box3().setFromObject(modelo);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      modelo.position.sub(center); // move o modelo pro centro da cena
+
+      modelo.scale.set(0.7, 0.7, 0.7);
       scene.add(modelo);
     }, undefined, (erro) => {
       console.error('Erro ao carregar o modelo 3D:', erro);
