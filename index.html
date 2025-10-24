@@ -62,13 +62,13 @@
 
     ul { margin: 10px 0 10px 20px; }
 
-    /* viewer limitado e centralizado */
+    /* viewer fixo e centralizado */
     .viewer {
       position: relative;
       width: 100%;
-      max-width: 550px;  /* limite fixo */
-      height: 340px;     /* altura fixa */
-      margin: 0 auto;    /* centraliza */
+      max-width: 550px;
+      height: 350px;
+      margin: 0 auto;
       border-radius: 12px;
       overflow: hidden;
       background: radial-gradient(100% 120% at 50% 50%, #222735, #0b0f19);
@@ -102,7 +102,7 @@
     }
 
     @media (max-width: 600px) {
-      .viewer { height: 270px; max-width: 100%; }
+      .viewer { height: 280px; max-width: 100%; }
       header h1 { font-size: 1.6rem; }
     }
   </style>
@@ -159,29 +159,36 @@
     scene.background = new THREE.Color('#10141f');
 
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-    camera.position.set(0, 0.4, 2.5);
+    camera.position.set(0, 0, 2.2);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.0;
+    controls.autoRotateSpeed = 1.2;
 
     const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.8);
-    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.5);
-    luzDirecional.position.set(2, 3, 4);
+    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.3);
+    luzDirecional.position.set(3, 3, 3);
     scene.add(luzAmbiente, luzDirecional);
 
     const loader = new GLTFLoader();
     loader.load('heart.glb', (gltf) => {
       const modelo = gltf.scene;
 
-      // Centraliza o modelo pelo seu bounding box
+      // Centraliza o modelo
       const box = new THREE.Box3().setFromObject(modelo);
       const center = new THREE.Vector3();
       box.getCenter(center);
-      modelo.position.sub(center); // move o modelo pro centro da cena
+      modelo.position.sub(center);
 
-      modelo.scale.set(0.7, 0.7, 0.7);
+      // Escala automática com base no tamanho da bounding box
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scaleFactor = 1.2 / maxDim; // garante que caiba na section
+      modelo.scale.setScalar(scaleFactor);
+
+      modelo.position.set(0, -0.1, 0);
       scene.add(modelo);
     }, undefined, (erro) => {
       console.error('Erro ao carregar o modelo 3D:', erro);
