@@ -62,12 +62,11 @@
 
     ul { margin: 10px 0 10px 20px; }
 
-    /* viewer fixo e centralizado */
     .viewer {
       position: relative;
       width: 100%;
-      max-width: 550px;
-      height: 350px;
+      max-width: 480px;
+      height: 340px;
       margin: 0 auto;
       border-radius: 12px;
       overflow: hidden;
@@ -102,7 +101,7 @@
     }
 
     @media (max-width: 600px) {
-      .viewer { height: 280px; max-width: 100%; }
+      .viewer { height: 260px; max-width: 100%; }
       header h1 { font-size: 1.6rem; }
     }
   </style>
@@ -163,7 +162,7 @@
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.autoRotate = true;
+    controls.autoRotate = false;
     controls.autoRotateSpeed = 1.2;
 
     const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.8);
@@ -174,24 +173,19 @@
     const loader = new GLTFLoader();
     loader.load('heart.glb', (gltf) => {
       const modelo = gltf.scene;
-
-      // Centraliza o modelo
       const box = new THREE.Box3().setFromObject(modelo);
       const center = new THREE.Vector3();
       box.getCenter(center);
       modelo.position.sub(center);
 
-      // Escala automática com base no tamanho da bounding box
       const size = new THREE.Vector3();
       box.getSize(size);
       const maxDim = Math.max(size.x, size.y, size.z);
-      const scaleFactor = 1.2 / maxDim; // garante que caiba na section
+      const scaleFactor = 1.2 / maxDim;
       modelo.scale.setScalar(scaleFactor);
 
-      modelo.position.set(0, -0.1, 0);
+      modelo.position.set(0, -0.05, 0);
       scene.add(modelo);
-    }, undefined, (erro) => {
-      console.error('Erro ao carregar o modelo 3D:', erro);
     });
 
     function ajustarTamanho() {
