@@ -67,6 +67,6 @@ O projeto inclui um **modelo 3D interativo** de um coração humano, utilizando 
    git clone https://github.com/seuusuario/doacao-coracao-pie2025.git
    cd doacao-coracao-pie2025
 
-##QR Corde do projeto
+## QR Corde do projeto
 
-<img width="3000" height="3000" alt="QR Code Doação de Coração" src="https://github.com/user-attachments/assets/332bb048-d794-467c-8f5f-f50c2c23e1bf" />
+<img width="800" height="800" alt="QR Code Doação de Coração" src="https://github.com/user-attachments/assets/332bb048-d794-467c-8f5f-f50c2c23e1bf" />
