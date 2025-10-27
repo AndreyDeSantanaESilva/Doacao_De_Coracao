@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Doação de Coração - Projeto PIE</title>
+  <title>Tecnologia Avançada na Doação de Coração - PIE 2025</title>
   <style>
     :root {
       --vermelho: #ff4d4d;
@@ -11,13 +11,14 @@
       --texto: #e6edf3;
       --suave: #a0abb8;
       --painel: #161b22;
+      --vidro: rgba(255, 255, 255, 0.05);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Poppins', system-ui, sans-serif;
-      background: var(--fundo);
+      background: linear-gradient(180deg, #0b0f19 0%, #151c2b 100%);
       color: var(--texto);
       padding: 20px;
       display: flex;
@@ -33,7 +34,8 @@
 
     header h1 {
       color: var(--vermelho);
-      font-size: 2rem;
+      font-size: 2.2rem;
+      text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
     }
 
     header p {
@@ -42,22 +44,25 @@
     }
 
     section {
-      background: var(--painel);
-      padding: 18px;
+      background: var(--vidro);
+      padding: 22px;
       border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,.4);
+      box-shadow: 0 8px 22px rgba(0,0,0,.4);
+      backdrop-filter: blur(10px);
       margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     h2 {
       color: var(--vermelho);
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 8px;
     }
 
     p, ul {
       color: var(--suave);
       line-height: 1.7;
+      margin-bottom: 8px;
     }
 
     ul { margin: 10px 0 10px 20px; }
@@ -67,13 +72,14 @@
       width: 100%;
       max-width: 480px;
       height: 340px;
-      margin: 0 auto;
-      border-radius: 12px;
+      margin: 0 auto 10px;
+      border-radius: 16px;
       overflow: hidden;
-      background: radial-gradient(100% 120% at 50% 50%, #222735, #0b0f19);
+      background: radial-gradient(120% 150% at 50% 40%, #222735, #0b0f19);
       display: flex;
       justify-content: center;
       align-items: center;
+      box-shadow: 0 0 25px rgba(255, 77, 77, 0.2);
     }
 
     canvas {
@@ -117,7 +123,7 @@
 
     <section>
       <h2>Coração 3D Interativo</h2>
-      <p>Arraste para girar e use o scroll para aproximar. Este modelo representa o coração humano em 3D, unindo tecnologia e medicina.</p>
+      <p>Arraste para girar e use o scroll para aproximar. O modelo 3D abaixo representa o coração humano, demonstrando o elo entre tecnologia, medicina e empatia.</p>
       <div class="viewer">
         <canvas id="coracao3d"></canvas>
         <div class="hint">Arraste para girar • Scroll para zoom</div>
@@ -126,14 +132,45 @@
 
     <section>
       <h2>Introdução</h2>
-      <p>A doação de órgãos é um ato de amor e solidariedade. Este projeto analisa o impacto das tecnologias avançadas no transplante de coração, explorando inovações que têm revolucionado a medicina moderna.</p>
+      <p>A doação de órgãos é um gesto de amor e solidariedade que salva vidas. Este projeto busca compreender como as tecnologias avançadas — como <strong>máquinas de perfusão normotérmica</strong>, <strong>inteligência artificial</strong> e <strong>softwares hospitalares</strong> — estão revolucionando os transplantes de coração, aumentando as chances de sucesso e segurança dos pacientes.</p>
+    </section>
+
+    <section>
+      <h2>Avanços Tecnológicos</h2>
+      <p>Os avanços tecnológicos têm transformado o transplante cardíaco, especialmente com o uso das <strong>máquinas de perfusão normotérmica</strong> — sistemas capazes de manter o coração batendo fora do corpo, em condições fisiológicas ideais.</p>
+
+      <ul>
+        <li><strong>Tempo de preservação:</strong> o método tradicional de armazenamento em gelo limita o tempo de viabilidade do coração a cerca de <strong>4 horas</strong>. Com a perfusão normotérmica, esse tempo pode se estender para <strong>6 a 10 horas</strong>, e há registros experimentais que alcançam até <strong>24 horas</strong> de preservação bem-sucedida <a href="https://www.jtcvsopen.org/article/S2666-2736%2821%2900224-2/fulltext" target="_blank">(JTCVS Open, 2021)</a>.</li>
+
+        <li><strong>Maior segurança e avaliação:</strong> como o coração permanece em funcionamento, é possível monitorar seus batimentos, consumo de oxigênio e resposta a medicamentos durante o transporte. Isso permite avaliar a qualidade do órgão antes do implante, reduzindo o risco de rejeição.</li>
+
+        <li><strong>Ampliação logística:</strong> com a janela de tempo expandida, os órgãos podem ser transportados por distâncias muito maiores, permitindo que doadores e receptores estejam em diferentes estados ou até países <a href="https://www.ishlt.org/about/news-detail/2025/04/27/donor-hearts-are-traveling-longer-distances-with-machine-perfusion" target="_blank">(ISHLT, 2025)</a>.</li>
+
+        <li><strong>Resultados clínicos:</strong> estudos com o sistema <em>Organ Care System (OCS)</em> relatam tempos médios de perfusão em torno de <strong>4 horas (≈ 272 min)</strong> e tempo total de isquemia superior a <strong>6 horas (≈ 374 min)</strong>, com excelentes taxas de sobrevida pós-transplante <a href="https://www.mdpi.com/2077-0383/14/4/1152" target="_blank">(MDPI, 2024)</a>.</li>
+
+        <li><strong>Futuro promissor:</strong> Pesquisas recentes já mantiveram corações humanos viáveis por <strong>24 horas</strong> em laboratório, apontando para um futuro em que doações de longa distância serão rotina <a href="https://neurosciencenews.com/heart-preservation-transplant-25868/" target="_blank">(Neuroscience News, 2024)</a>.</li>
+      </ul>
+
+      <p>Esses avanços não apenas aumentam as chances de sucesso dos transplantes, mas também tornam o processo mais humano, seguro e abrangente, permitindo que mais pessoas tenham acesso a um coração compatível e funcional.</p>
+    </section>
+
+    <section>
+      <h2>Desafios e Custos</h2>
+      <p>Apesar do alto custo inicial dos equipamentos e treinamentos, os benefícios superam os desafios. O investimento em tecnologia reduz complicações pós-operatórias e amplia o número de vidas salvas.</p>
+    </section>
+
+    <section>
+      <h2>Medicina do Futuro</h2>
+      <p>Empatia e inovação caminham lado a lado. A tecnologia não substitui o valor humano da doação — ela o amplifica, permitindo que um coração viaje mais longe e encontre, com precisão, quem dele mais precisa.</p>
     </section>
 
     <footer>
-      Modelo 3D local: <strong>heart.glb</strong> — “Model by Mesh-Magnet, licensed under CC BY — via Sketchfab”.
+      Modelo 3D local: <strong>heart.glb</strong> — “Model by Mesh-Magnet, licensed under CC BY — via Sketchfab”.<br>
+      © 2025 — Projeto Interdisciplinar de Extensão (PIE) — UNILUS.
     </footer>
   </div>
 
+  <!-- Scripts -->
   <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
   <script type="importmap">
   {
@@ -150,23 +187,22 @@
     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
     const canvas = document.querySelector('#coracao3d');
-    const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, canvas, alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#10141f');
+    scene.background = null;
 
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
     camera.position.set(0, 0, 2.2);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.autoRotate = false;
 
-    const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.6);
-    const luzDirecional = new THREE.DirectionalLight(0xffffff, 1.3);
-    luzDirecional.position.set(3, 3, 3);
+    const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.4);
+    const luzDirecional = new THREE.DirectionalLight(0xff8080, 1.2);
+    luzDirecional.position.set(2, 2, 3);
     scene.add(luzAmbiente, luzDirecional);
 
     const loader = new GLTFLoader();
@@ -179,11 +215,17 @@
 
       const size = new THREE.Vector3();
       box.getSize(size);
-      const maxDim = Math.max(size.x, size.y, size.z);
-      const scaleFactor = 0.7 / maxDim;  // menor que antes
+      const scaleFactor = 0.7 / Math.max(size.x, size.y, size.z);
       modelo.scale.setScalar(scaleFactor);
 
-      modelo.position.set(-0.4, -0.05, 0); // deslocado à esquerda
+      modelo.traverse((child) => {
+        if (child.isMesh) {
+          child.material.metalness = 0.3;
+          child.material.roughness = 0.4;
+        }
+      });
+
+      modelo.position.set(-0.2, -0.1, 0);
       scene.add(modelo);
     });
 
